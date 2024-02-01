@@ -3,7 +3,7 @@
 ## Introduction 
 
 This repo is an open source templates collection of psychology experiment based on `Lab.js`.
-The picked up templates are well-tested and expected to be handy bases for extending to most of practice needs. 
+The picked up templates are well-tested and expected to be handy bases for any extensions to fit most of practice needs of experimental psychology researchers. 
 
 ## How to use
 
