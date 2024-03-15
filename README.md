@@ -26,15 +26,15 @@ In the `lab.js` builder, click Open button from the top menu and select the json
 
 ## Templates (updating)
 
-- [x] 01
-- [x] 02
-- [x] 03
-- [ ] 04 
-- [ ] 05 
+- [x] General Global loop (generating random participant ID with 6 digits)
+- [x] General Informed Consent
+- [x] General Demographic Info
+- [x] General Debriefing
+- [ ] Coming soon...
 
 ## Acknowledgements
 
-This project is an open source project that welcome any contribution and feedback. 
+This repo is an open source project that welcome any contribution and feedback. 
 I wish that the templates could serve the experimental psychology community and students who are suffering with coding by providing flexible as well as standardized formats and workflow to save the cost and could explore more interesting methods.
 
 ## License
