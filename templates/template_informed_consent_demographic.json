@@ -1,0 +1,397 @@
+{
+  "components": {
+    "3": {
+      "id": "3",
+      "type": "lab.flow.Loop",
+      "children": [
+        "7"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "participantID",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "${this.random.range(100000, 1000000)}"
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle"
+      },
+      "files": [],
+      "responses": [
+        {
+          "label": "",
+          "event": "",
+          "target": "",
+          "filter": ""
+        }
+      ],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "defineMetaInfo",
+          "message": "before:prepare",
+          "code": "// Sample data for the DataFrame\nvar data = [\n  { name: 'researcher', content: 'Add researcher info here'},\n  { name: 'coresearcher', content: 'Add co-researcher info here'},\n  { name: 'purpose', content: 'Add description on your research purpose here' },\n  { name: 'task', content: 'Add task info here'},\n  { name: 'reward', content: 'Add reward here' }, \n  { name: 'debriefing_purpose', content: '(Optional) Add debriefing purpose here'},\n  { name: 'debriefing_methods', content: '(Optional) Add debriefing methods here' },\n  { name: 'debriefing_final', content:'(Optional) Add final permission here'} \n];\n\n// Assign the DataFrame to this.parameter.metaInfo\nthis.parameters.metaInfo = data;"
+        }
+      ],
+      "title": "globalLoop",
+      "_tab": "Content",
+      "plugins": [
+        {
+          "type": "fullscreen",
+          "message": "実験の実施には全画面表示が必要です",
+          "hint": "クリックして全画面表示にしてください"
+        }
+      ],
+      "_collapsed": false,
+      "skipCondition": "${this.state.skipGlobal == 0}",
+      "skip": false,
+      "tardy": true
+    },
+    "6": {
+      "id": "6",
+      "type": "lab.html.Page",
+      "items": [
+        {
+          "required": true,
+          "type": "text",
+          "title": "本研究に興味を持ってくださり，ありがとうございます．",
+          "content": "<p><span style = \"color: tomato\">画面をスクロールして最後までお読みください．</span></p>\n　研究内容について十分に理解した上で，本研究への参加をお願い致します．また，本ページの説明を受けることで，研究への参加を強制するものではありません．\n<br>\n<br>\n${this.parameters.metaInfo[0].content}\n<br>\n<br>\n${this.parameters.metaInfo[1].content}"
+        },
+        {
+          "required": true,
+          "type": "text",
+          "title": "【研究の目的】",
+          "content": "${this.parameters.metaInfo[2].content}"
+        },
+        {
+          "required": true,
+          "type": "text",
+          "title": "【研究の手続きの概要】",
+          "content": "${this.parameters.metaInfo[3].content}"
+        },
+        {
+          "required": true,
+          "type": "text",
+          "title": "【報酬について】",
+          "content": "${this.parameters.metaInfo[4].content}"
+        },
+        {
+          "required": true,
+          "type": "text",
+          "title": "【プライバシーの保護】",
+          "content": "　研究者は参加者氏名を特定できません．研究成果の公表は，統計的に処理した上で個人が特定されない形で行います．また，得られたデータは研究以外の目的には使用しません．収集・分析したデータは研究者以外がアクセスできないように保管し，研究成果の発表後は，学会のデータ管理規定に従って，適切にデータを処分いたします．研究の結果は学術論文，学術専門書，学会，研究会等で発表される場合があります． "
+        },
+        {
+          "required": true,
+          "type": "text",
+          "title": "【研究に関わるリスクとベネフィット】",
+          "content": "　想定されるリスクはありません．参加するベネフィットは【報酬について】に書かれている通りです．"
+        },
+        {
+          "required": true,
+          "type": "text",
+          "title": "【研究参加の取りやめについて】",
+          "content": "　研究中は理由によらず，いつでも研究を中止できます．\n<br>　ただし，途中で研究を中止された場合，再び参加することはできませんので，ご注意ください．またその場合はデータ使用に関する同意を得られなかったものとし，データとして使用いたしません．"
+        },
+        {
+          "required": true,
+          "type": "text",
+          "title": "【問い合わせ】",
+          "content": "　研究内容についてのご質問や研究参加の辞退についてのお問い合わせ等がございましたら，クラウドワークスの連絡機能を利用し，研究代表者にご連絡ください．"
+        },
+        {
+          "required": true,
+          "type": "radio",
+          "label": "以上の内容を十分に理解した上で，研究への参加を承諾して頂ける場合は，以下のチェックボックスにチェックを入れて，次のページに移動してください．",
+          "options": [
+            {
+              "label": "研究への参加に同意して研究に参加します．",
+              "coding": "1"
+            },
+            {
+              "label": "同意しません．",
+              "coding": "0"
+            }
+          ],
+          "name": "Commitment"
+        },
+        {
+          "required": true,
+          "type": "html",
+          "content": "<div class = 'content-horizontal-center'><button id = \"nextBtn\">次へ</button></div>"
+        }
+      ],
+      "scrollTop": true,
+      "submitButtonText": "次へ →",
+      "submitButtonPosition": "hidden",
+      "files": [],
+      "responses": [],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "breakWhenUncommit",
+          "message": "commit",
+          "code": "if(this.state.Commitment == 0)\n{\n\tthis.parent.end()\n}"
+        }
+      ],
+      "title": "informedConsent",
+      "_tab": "Content",
+      "timeout": "",
+      "correctResponse": "",
+      "width": "l",
+      "skip": false,
+      "plugins": [],
+      "_template": false,
+      "tardy": true,
+      "skipCondition": ""
+    },
+    "7": {
+      "id": "7",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "6",
+        "69",
+        "10"
+      ],
+      "files": [],
+      "responses": [
+        {
+          "label": "",
+          "event": "",
+          "target": "",
+          "filter": ""
+        }
+      ],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "",
+          "message": "",
+          "code": ""
+        }
+      ],
+      "title": "/",
+      "_tab": "Content"
+    },
+    "10": {
+      "id": "10",
+      "type": "lab.html.Page",
+      "items": [
+        {
+          "type": "text"
+        }
+      ],
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": [],
+      "responses": [
+        {
+          "label": "",
+          "event": "",
+          "target": "",
+          "filter": ""
+        }
+      ],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "",
+          "message": "",
+          "code": ""
+        }
+      ],
+      "title": "Add more component here",
+      "_tab": "Content"
+    },
+    "69": {
+      "id": "69",
+      "type": "lab.html.Page",
+      "items": [
+        {
+          "required": true,
+          "type": "text",
+          "title": "ここではあなたの基本的な属性をお尋ねします"
+        },
+        {
+          "required": true,
+          "type": "radio",
+          "label": "あなたの性別は",
+          "options": [
+            {
+              "label": "男性",
+              "coding": "Male"
+            },
+            {
+              "label": "女性",
+              "coding": "Female"
+            },
+            {
+              "label": "答えない",
+              "coding": "Other"
+            }
+          ],
+          "name": "gender"
+        },
+        {
+          "required": true,
+          "type": "input",
+          "label": "あなたの年齢は",
+          "attributes": {
+            "type": "number",
+            "min": "16",
+            "max": "99"
+          },
+          "help": "年齢を半角数字で入力してください．",
+          "name": "age"
+        },
+        {
+          "required": true,
+          "type": "radio",
+          "label": "あなたは日本国籍を持っていますか？",
+          "options": [
+            {
+              "label": "持っている",
+              "coding": "Japan"
+            },
+            {
+              "label": "持っていない",
+              "coding": "Other"
+            }
+          ],
+          "name": "nationality"
+        },
+        {
+          "required": true,
+          "type": "html",
+          "content": "<h4>あなたはふだん何か収入になる仕事をしていますか？</h4>\r\n<p>注：収入になる仕事には家業（農業を含む）の手伝いや内職を含みます．家事には，育児・介護・看護などを含みます．</p>\r\n\r\n<div>\r\n    <h4>仕事をしている人</h4>\r\n    <input type=\"radio\" name=\"occupation\" value=\"full_time_job\" id=\"full_time_job\" required>\r\n    <label for=\"full_time_job\">仕事をおもにしている</label><br>\r\n    <input type=\"radio\" name=\"occupation\" value=\"house_job\" id=\"house_job\" required>\r\n    <label for=\"house_job\">家事がおもで仕事もしている</label><br>\r\n    <input type=\"radio\" name=\"occupation\" value=\"std_job\" id=\"std_job\" required>\r\n    <label for=\"std_job\">通学がおもで仕事もしている</label><br>\r\n    <input type=\"radio\" name=\"occupation\" value=\"other_job\" id=\"other_job\" required>\r\n    <label for=\"other_job\">家事・通学以外のことがおもで仕事もしている</label><br>\r\n\r\n    <h4>仕事をしていない人</h4>\r\n    <input type=\"radio\" name=\"occupation\" value=\"house\" id=\"house\" required>\r\n    <label for=\"house\">家事をしている</label><br>\r\n    <input type=\"radio\" name=\"occupation\" value=\"student\" id=\"student\" required>\r\n    <label for=\"student\">通学している</label><br>\r\n    <input type=\"radio\" name=\"occupation\" value=\"other\" id=\"other\" required>\r\n    <label for=\"other\">その他</label><br>\r\n</div>"
+        },
+        {
+          "required": true,
+          "type": "html",
+          "content": "<div class = 'content-horizontal-center'><button id = \"nextBtn\">次へ</button></div>\r\n"
+        }
+      ],
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": [],
+      "responses": [
+        {
+          "label": "",
+          "event": "",
+          "target": "",
+          "filter": ""
+        }
+      ],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "",
+          "message": "after:end",
+          "code": "if(this.state.nationality == 'Other')\r\n{\r\n\tthis.parent.end()\r\n}\r\nif(this.state.age < 20 |this.state.age > 39)\r\n{\r\n\tthis.parent.end()\r\n}\r\nif(this.state.gender == 'Female')\r\n{\r\n\tthis.parent.end()\r\n}"
+        }
+      ],
+      "title": "demographic",
+      "width": "l",
+      "_tab": "Content",
+      "skip": false
+    },
+    "root": {
+      "id": "root",
+      "title": "root",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "3"
+      ],
+      "parameters": [],
+      "plugins": [
+        {
+          "type": "lab.plugins.Metadata"
+        }
+      ],
+      "metadata": {
+        "title": "template_Informed_consent&demographic",
+        "description": "This is a template of informed consent and demographic",
+        "repository": "https://github.com/VldmrSlvdr/online-psy-experiment-template",
+        "contributors": "Yifei Li"
+      }
+    }
+  },
+  "version": [
+    20,
+    2,
+    4
+  ],
+  "files": {
+    "files": {
+      "index.html": {
+        "content": "data:text/html,%3C!doctype%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%20%20%3Cmeta%20charset%3D%22utf-8%22%3E%0A%20%20%3Ctitle%3EExperiment%3C%2Ftitle%3E%0A%20%20%3C!--%20viewport%20setup%20--%3E%0A%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1%22%3E%0A%20%20%3C!--%20lab.js%20library%20and%20experiment%20code%20--%3E%0A%20%20%24%7B%20header%20%7D%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3C!--%20If%20you'd%20rather%20have%20a%20container%20with%20a%20fixed%20width%0A%20%20%20%20%20%20%20and%20variable%20height%2C%20try%20removing%20the%20fullscreen%20class%20below%20--%3E%0A%20%20%3Cdiv%20class%3D%22container%20fullscreen%22%20data-labjs-section%3D%22main%22%3E%0A%20%20%20%20%3Cmain%20class%3D%22content-vertical-center%20content-horizontal-center%22%3E%0A%20%20%20%20%20%20%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%3Ch2%3ELoading%20Experiment%3C%2Fh2%3E%0A%20%20%20%20%20%20%20%20%3Cp%3EThe%20experiment%20is%20loading%20and%20should%20start%20in%20a%20few%20seconds%3C%2Fp%3E%0A%20%20%20%20%20%20%3C%2Fdiv%3E%0A%20%20%20%20%3C%2Fmain%3E%0A%20%20%3C%2Fdiv%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A",
+        "source": "library"
+      },
+      "style.css": {
+        "content": "data:text/css,input%5Btype%3D%22radio%22%5D%20%7B%0D%0A%20%20height%3A%2020px%3B%0D%0A%20%20width%3A%2020px%3B%0D%0A%7D",
+        "source": "library"
+      }
+    },
+    "bundledFiles": {
+      "lib/lab.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.fallback.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.css": {
+        "type": "text/css"
+      },
+      "lib/loading.svg": {
+        "type": "image/svg+xml"
+      }
+    }
+  }
+}

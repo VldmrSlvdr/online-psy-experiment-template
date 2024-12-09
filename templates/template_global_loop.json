@@ -1,0 +1,192 @@
+{
+  "components": {
+    "1": {
+      "id": "1",
+      "type": "lab.flow.Loop",
+      "children": [
+        "2"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "participantID",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "${this.random.range(100000, 1000000)}"
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle"
+      },
+      "files": [],
+      "responses": [
+        {
+          "label": "",
+          "event": "",
+          "target": "",
+          "filter": ""
+        }
+      ],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "defineMetaInfo",
+          "message": "before:prepare",
+          "code": "// Sample data for the DataFrame\nvar data = [\n  { name: 'researcher', content: 'Add researcher info here'},\n  { name: 'coresearcher', content: 'Add co-researcher info here'},\n  { name: 'purpose', content: 'Add description on your research purpose here' },\n  { name: 'task', content: 'Add task info here'},\n  { name: 'reward', content: 'Add reward here' }, \n  { name: 'debriefing_purpose', content: '(Optional) Add debriefing purpose here'},\n  { name: 'debriefing_methods', content: '(Optional) Add debriefing methods here' },\n  { name: 'debriefing_final', content:'(Optional) Add final permission here'} \n];\n\n// Assign the DataFrame to this.parameter.metaInfo\nthis.parameters.metaInfo = data;"
+        }
+      ],
+      "title": "globalLoop",
+      "_tab": "Content",
+      "plugins": [
+        {
+          "type": "fullscreen",
+          "message": "実験の実施には全画面表示が必要です",
+          "hint": "クリックして全画面表示にしてください"
+        }
+      ],
+      "_collapsed": false,
+      "skipCondition": "${this.state.skipGlobal == 0}",
+      "skip": false,
+      "tardy": true
+    },
+    "2": {
+      "id": "2",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "6"
+      ],
+      "files": [],
+      "responses": [
+        {
+          "label": "",
+          "event": "",
+          "target": "",
+          "filter": ""
+        }
+      ],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "",
+          "message": "",
+          "code": ""
+        }
+      ],
+      "title": "/",
+      "_tab": "Content"
+    },
+    "6": {
+      "id": "6",
+      "type": "lab.html.Page",
+      "items": [
+        {
+          "type": "text"
+        }
+      ],
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": [],
+      "responses": [
+        {
+          "label": "",
+          "event": "",
+          "target": "",
+          "filter": ""
+        }
+      ],
+      "parameters": [
+        {
+          "name": "",
+          "value": "",
+          "type": "string"
+        }
+      ],
+      "messageHandlers": [
+        {
+          "title": "",
+          "message": "",
+          "code": ""
+        }
+      ],
+      "title": "Add your component here",
+      "_tab": "Content"
+    },
+    "root": {
+      "id": "root",
+      "title": "root",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "1"
+      ],
+      "parameters": [],
+      "plugins": [
+        {
+          "type": "lab.plugins.Metadata"
+        }
+      ],
+      "metadata": {
+        "title": "template_global_loop",
+        "description": "This is a temple of global loop ",
+        "repository": "https://github.com/VldmrSlvdr/online-psy-experiment-template",
+        "contributors": "Yifei Li"
+      }
+    }
+  },
+  "version": [
+    20,
+    2,
+    4
+  ],
+  "files": {
+    "files": {
+      "index.html": {
+        "content": "data:text/html,%3C!doctype%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%20%20%3Cmeta%20charset%3D%22utf-8%22%3E%0A%20%20%3Ctitle%3EExperiment%3C%2Ftitle%3E%0A%20%20%3C!--%20viewport%20setup%20--%3E%0A%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1%22%3E%0A%20%20%3C!--%20lab.js%20library%20and%20experiment%20code%20--%3E%0A%20%20%24%7B%20header%20%7D%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3C!--%20If%20you'd%20rather%20have%20a%20container%20with%20a%20fixed%20width%0A%20%20%20%20%20%20%20and%20variable%20height%2C%20try%20removing%20the%20fullscreen%20class%20below%20--%3E%0A%20%20%3Cdiv%20class%3D%22container%20fullscreen%22%20data-labjs-section%3D%22main%22%3E%0A%20%20%20%20%3Cmain%20class%3D%22content-vertical-center%20content-horizontal-center%22%3E%0A%20%20%20%20%20%20%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%3Ch2%3ELoading%20Experiment%3C%2Fh2%3E%0A%20%20%20%20%20%20%20%20%3Cp%3EThe%20experiment%20is%20loading%20and%20should%20start%20in%20a%20few%20seconds%3C%2Fp%3E%0A%20%20%20%20%20%20%3C%2Fdiv%3E%0A%20%20%20%20%3C%2Fmain%3E%0A%20%20%3C%2Fdiv%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A",
+        "source": "library"
+      },
+      "style.css": {
+        "content": "data:text/css,",
+        "source": "library"
+      }
+    },
+    "bundledFiles": {
+      "lib/lab.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.fallback.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.css": {
+        "type": "text/css"
+      },
+      "lib/loading.svg": {
+        "type": "image/svg+xml"
+      }
+    }
+  }
+}
