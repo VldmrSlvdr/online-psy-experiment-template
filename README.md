@@ -1,5 +1,7 @@
 # Online Psychology Experiment `Lab.js` templates
 
+[English](README.md) | [中文](README.zh_hans.md) | [日本語](REAME.ja.md)
+
 ## Introduction 
 
 This repo is an open source templates collection of psychology experiment based on `Lab.js`.
