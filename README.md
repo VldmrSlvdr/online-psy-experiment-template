@@ -1,6 +1,6 @@
 # Online Psychology Experiment `Lab.js` templates
 
-[English](README.md) | [中文](README.zh_hans.md) | [日本語](REAME.ja.md)
+[English](README.md) | [中文](README.zh_hans.md) | [日本語](README.ja.md)
 
 ## Introduction 
 
