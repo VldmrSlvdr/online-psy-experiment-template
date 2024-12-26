@@ -1,6 +1,6 @@
 # オンライン心理学実験 `Lab.js` テンプレート集
 
--[English](README.md)
+- [English](README.md)
 
 ## はじめに
 
